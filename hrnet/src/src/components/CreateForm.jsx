@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Selector from '../modules/selector/Selector';
-import { departmentsArray } from '../modules/selector/departmentsArray';
+import { departmentsArray } from '../modules/selector/datasArrays/departmentsArray';
 
 const Title = styled.div`
 `;
@@ -28,7 +28,7 @@ return (
             <h1>HRnet</h1>
         </Title>
         <Container>
-            <a href="employee-list.html">View Current Employees</a>
+            <a>View Current Employees</a>
             <h2>Create Employee</h2>
             <form action="#" id="create-employee">
                 <label htmlFor="first-name">First Name</label>

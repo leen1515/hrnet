@@ -1,9 +1,8 @@
-
+import ProvidesRoutes from "./src/providerRoutes/ProvidesRoutes";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <ProvidesRoutes/>
   );
 }
 
