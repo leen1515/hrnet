@@ -1,4 +1,4 @@
-import ProvidesRoutes from "./src/providerRoutes/ProvidesRoutes";
+import ProvidesRoutes from "./providerRoutes/ProvidesRoutes";
 
 function App() {
   return (
