@@ -5,6 +5,9 @@ import { statesArray } from '../modules/selector/datasArrays/statesArray';
 import DateSelector from '../modules/DateSelector';
 import Modal from '../modules/Modal';
 import { Label } from '../styled/global';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitForm } from '../reduxcode/sliceform';
+import { useState, useEffect } from 'react';
 
 const Container = styled.div`
     display:flex;
@@ -66,15 +69,6 @@ const Legend = styled.legend`
 
 `;
 
-const LabelLegend = styled.label`
-    font-size: 1em;
-    font-weight: 400;
-    margin: 10px 0 0 0;
-    width:fit-content;
-    background-color:#ffffff;
-    border-radius: 10px;
-    border:none;
-`;
 const Button = styled.button`
     font-size: 1em;
     font-weight: 400;
@@ -92,15 +86,41 @@ const Button = styled.button`
 `;
 function CreateForm() {
     const departmentOptions = departmentsArray;
+    const dispatch = useDispatch();
+    const [dateOfBirth, setDateOfBirth] = useState(new Date());
+    const [dateStart, setDateStart] = useState(new Date());
+    const [state, setState] = useState('');
+    const [department, setDepartment] = useState('');
 
-    const handleSelectChange = (e) => {
-    console.log('Selected value:', e.target.value);
-    };
+    const formData = useSelector(state => state.form.employeeData);
+
+    useEffect(() => {
+      console.log('Form Data:', formData);
+    }, [formData]);
+
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+            firstName: e.target["first-name"].value,
+            lastName: e.target["last-name"].value,
+            dateOfBirth : dateOfBirth.getTime(),
+            dateStart: dateStart.getTime(),
+            address: {
+            street: e.target["street"].value,
+            city: e.target["city"].value,
+            state,
+            zipCode: e.target["zip-code"].value
+            },
+            department
+        };
+        dispatch(submitForm(formData));
+        };
 
 return (
     <>
         <Container>
-            <FormStyle action="#" id="create-employee">
+            <FormStyle action="#" id="create-employee" onSubmit={handleSubmit}>
                 
                 <InfosFieldset>
                 <Legend>Identity</Legend>
@@ -110,8 +130,14 @@ return (
 
                 <Label htmlFor="last-name">Last Name</Label>
                 <input type="text" id="last-name" />
-                <DateSelector title = "Date of Birth"/>
-                <DateSelector title = "Date Start"/>
+
+                <DateSelector 
+                title="Date of Birth" 
+                onChange={(date) => setDateOfBirth(date)} />
+
+                <DateSelector 
+                title="Date Start" 
+                onChange={(date) => setDateStart(date)} />
                 </InfosFieldset>
                 <AddressFieldset>
                     <Legend>Address</Legend>
@@ -122,18 +148,25 @@ return (
                     <Label htmlFor="city">City</Label>
                     <input id="city" type="text" />
 
-                    <Selector label="state" name="state" id="state" 
-                options={statesArray} 
-                onChange={handleSelectChange} />
+                    <Selector 
+                    label="State" 
+                    name="state" 
+                    id="state" 
+                    options={statesArray} 
+                    onChange={(e) => setState(e.target.value)} />
 
                     <Label htmlFor="zip-code">Zip Code</Label>
                     <input id="zip-code" type="number" />
                 </AddressFieldset>
+
                 <InfosFieldset>
-                <LabelLegend>Company department</LabelLegend>
-                <Selector label="department" name="department" id="department" 
+
+                <Selector 
+                label="Department" 
+                name="department" 
+                id="department" 
                 options={departmentOptions} 
-                onChange={handleSelectChange} />
+                onChange={(e) => setDepartment(e.target.value)} />
                 </InfosFieldset>
                 <Button type="submit">Save</Button>
 
