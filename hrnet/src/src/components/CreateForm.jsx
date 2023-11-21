@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Selector from '../modules/selector/Selector';
 import { departmentsArray } from '../modules/selector/datasArrays/departmentsArray';
+import { statesArray } from '../modules/selector/datasArrays/statesArray';
 
 const Title = styled.div`
 `;
@@ -53,8 +54,9 @@ return (
                     <input id="city" type="text" />
 
                     <label htmlFor="state">State</label>
-                    <select name="state" id="state">
-                    </select>
+                    <Selector name="state" id="state" 
+                options={statesArray} 
+                onChange={handleSelectChange} />
 
                     <label htmlFor="zip-code">Zip Code</label>
                     <input id="zip-code" type="number" />
