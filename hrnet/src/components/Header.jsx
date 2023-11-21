@@ -5,29 +5,40 @@ import { Link } from 'react-router-dom';
 const HeaderStyle = styled.header`
     position:relative;
     display:flex;
-    align-items:center;
-    justify-content:space-between;
+    align-items:flex-start;
+    justify-content:flex-start;
     flex-direction:row;
     width:40%;
     height:15vh;
-    margin: auto;
-
+    margin: 0;
+    background : linear-gradient(130deg, #ffffff 40%, #fffff027 50%);
     && img{
 object-fit: contain;
-width: 100%;
+width: 30%;
 height:100%;
 }
 `;
+
+const ContainLink = styled.div`
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+    width:300px;
+    top: 0px;
+    left:0;
+    justify-content:flex-start;
+    `;
 
 const LinkStyle = styled(Link)`
     position:relative;
     font-size: 1em;
     font-weight: 400;
-    margin-top: 100px;
+    margin-top: 10px;
     padding: 10px 20px;
     background-color:#e9fed3;
     border-radius: 10px;
-    width:400px;
+    width:200px;
     text-align: center;
     border:none;
     text-decoration:none;
@@ -42,12 +53,14 @@ function Header(){
 
     return(<>
         <HeaderStyle>
-        <LinkStyle to = "/ListEmploye">View Current Employees</LinkStyle>
-
+            
             <img src={logo} alt="logo" />
-            <LinkStyle to = "/">Create New Employee</LinkStyle>
-
+            
         </HeaderStyle>
+        <ContainLink>
+        <LinkStyle to = "/ListEmploye">View Current Employees</LinkStyle>
+        <LinkStyle to = "/">Create New Employee</LinkStyle>
+        </ContainLink>
         </>
     )
 }

@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { Label } from '../../styled/global';
 
 const StyledSelect = styled.select`
-  padding: 8px;
+  padding: 2px;
+  width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1em;
   margin: 5px 0;
+  outline:black;
+  &&:focus {
+    outline: 2px solid black;}
 `;
 
-function Selector({ name, id, options, onChange }) {
+function Selector({ label, name, id, options, onChange }) {
     const [value, setValue] = useState('');
 
     const handleChange = (e) => {
@@ -27,10 +32,12 @@ function Selector({ name, id, options, onChange }) {
         }
     };
 
-    return (
+    return (<>
+          {label && <Label htmlFor={id}>{label}</Label>}
         <StyledSelect name={name} id={id} value={value} onChange={handleChange}>
             {options.map(renderOption)}
         </StyledSelect>
+        </>
     );
 }
 
