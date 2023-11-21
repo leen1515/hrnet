@@ -2,19 +2,34 @@ import styled from 'styled-components';
 import Selector from '../modules/selector/Selector';
 import { departmentsArray } from '../modules/selector/datasArrays/departmentsArray';
 import { statesArray } from '../modules/selector/datasArrays/statesArray';
-
+import DateSelector from '../modules/DateSelector';
+import Modal from '../modules/Modal';
 const Title = styled.div`
 `;
 
 const Container = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100vh;
+    background-color:#f2f2f2;
 `;
 
 const AddressFieldset = styled.fieldset`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 `;
 
-const Modal = styled.div`
+const InfosFieldset = styled.fieldset`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 `;
-
 
 function CreateForm() {
     const departmentOptions = departmentsArray;
@@ -32,6 +47,7 @@ return (
             <a>View Current Employees</a>
             <h2>Create Employee</h2>
             <form action="#" id="create-employee">
+                <InfosFieldset>
                 <label htmlFor="first-name">First Name</label>
                 <input type="text" id="first-name" />
 
@@ -40,10 +56,9 @@ return (
 
                 <label htmlFor="date-of-birth">Date of Birth</label>
                 <input id="date-of-birth" type="text" />
-
-                <label htmlFor="start-date">Start Date</label>
-                <input id="start-date" type="text" />
-
+                <DateSelector title = "Date of Birth"/>
+                <DateSelector title = "Date Start"/>
+                </InfosFieldset>
                 <AddressFieldset>
                     <legend>Address</legend>
 
