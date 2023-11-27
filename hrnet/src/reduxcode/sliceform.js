@@ -1,17 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const formSlice = createSlice({
+
+
+const formSlice = createSlice({
   name: 'form',
   initialState: {
-    employeeData: {}
+    employees: [{ id: 'id1', firstName: 'John', lastName: 'Doe', dateOfBirth: '1990-01-01', dateStart: '2020-01-01', address: { street: '1 rue de la Paix', city: 'Paris', state: 'France', zipCode: '75000' }, department: 'IT'}] 
   },
   reducers: {
     submitForm: (state, action) => {
-      state.employeeData = action.payload;
-    },
-  },
+      const newEmployee = {
+        ...action.payload
+      };
+      state.employees.push(newEmployee);
+      console.log('New employee payload:', action.payload);
+
+    }
+  }
 });
 
 export const { submitForm } = formSlice.actions;
-
-export default formSlice.reducer;
+export const formSliceReducer = formSlice.reducer;
+export default formSliceReducer;

@@ -5,9 +5,10 @@ import { statesArray } from '../modules/selector/datasArrays/statesArray';
 import DateSelector from '../modules/DateSelector';
 import Modal from '../modules/Modal';
 import { Label } from '../styled/global';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { submitForm } from '../reduxcode/sliceform';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { createEmployeeData } from '../datas/format';
 
 const Container = styled.div`
     display:flex;
@@ -92,30 +93,23 @@ function CreateForm() {
     const [state, setState] = useState('');
     const [department, setDepartment] = useState('');
 
-    const formData = useSelector(state => state.form.employeeData);
 
-    useEffect(() => {
-      console.log('Form Data:', formData);
-    }, [formData]);
-
-    
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = {
-            firstName: e.target["first-name"].value,
-            lastName: e.target["last-name"].value,
-            dateOfBirth : dateOfBirth.getTime(),
-            dateStart: dateStart.getTime(),
-            address: {
-            street: e.target["street"].value,
-            city: e.target["city"].value,
+        const employeeData  = createEmployeeData(
+            Date.now(),
+            e.target["first-name"].value,
+            e.target["last-name"].value,
+            dateOfBirth,
+            dateStart,
+            e.target["street"].value,
+            e.target["city"].value,
             state,
-            zipCode: e.target["zip-code"].value
-            },
+            e.target["zip-code"].value,
             department
-        };
-        dispatch(submitForm(formData));
-        };
+        );
+        dispatch(submitForm(employeeData ));
+    };
 
 return (
     <>

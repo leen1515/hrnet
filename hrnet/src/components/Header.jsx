@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const HeaderParent = styled.div`
     position:fixed;
     z-index: 100;
+    top:0;
     `;
 
 const HeaderStyle = styled.header`
@@ -13,14 +14,16 @@ const HeaderStyle = styled.header`
     align-items:flex-start;
     justify-content:flex-start;
     flex-direction:row;
-    width:40%;
+    width:100%;
     height:15vh;
     margin: 0;
     background : linear-gradient(130deg, #ffffff 40%, #fffff027 50%);
+    z-index:1;
     && img{
 object-fit: contain;
 width: 30%;
 height:100%;
+z-index: 1;
 }
 `;
 
