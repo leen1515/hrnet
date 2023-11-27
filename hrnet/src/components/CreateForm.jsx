@@ -111,64 +111,68 @@ function CreateForm() {
         dispatch(submitForm(employeeData ));
     };
 
-return (
-    <>
-        <Container>
-            <FormStyle action="#" id="create-employee" onSubmit={handleSubmit}>
-                
-                <InfosFieldset>
-                <Legend>Identity</Legend>
+    return (
+        <>
+            <Container>
+                <FormStyle action="#" id="create-employee" onSubmit={handleSubmit}>
+                    
+                    <InfosFieldset>
+                        <Legend>Identity</Legend>
 
-                <Label htmlFor="first-name">First Name</Label>
-                <input type="text" id="first-name" />
+                        <Label htmlFor="first-name">First Name</Label>
+                        <input type="text" id="first-name" aria-label="First Name" />
 
-                <Label htmlFor="last-name">Last Name</Label>
-                <input type="text" id="last-name" />
+                        <Label htmlFor="last-name">Last Name</Label>
+                        <input type="text" id="last-name" aria-label="Last Name" />
 
-                <DateSelector 
-                title="Date of Birth" 
-                onChange={(date) => setDateOfBirth(date)} />
+                        <DateSelector 
+                            title="Date of Birth" 
+                            aria-label="Date of Birth"
+                            onChange={(date) => setDateOfBirth(date)} />
 
-                <DateSelector 
-                title="Date Start" 
-                onChange={(date) => setDateStart(date)} />
-                </InfosFieldset>
-                <AddressFieldset>
-                    <Legend>Address</Legend>
+                        <DateSelector 
+                            title="Date Start" 
+                            aria-label="Date Start"
+                            onChange={(date) => setDateStart(date)} />
+                    </InfosFieldset>
 
-                    <Label htmlFor="street">Street</Label>
-                    <input id="street" type="text" />
+                    <AddressFieldset>
+                        <Legend>Address</Legend>
 
-                    <Label htmlFor="city">City</Label>
-                    <input id="city" type="text" />
+                        <Label htmlFor="street">Street</Label>
+                        <input id="street" type="text" aria-label="Street" />
 
-                    <Selector 
-                    label="State" 
-                    name="state" 
-                    id="state" 
-                    options={statesArray} 
-                    onChange={(e) => setState(e.target.value)} />
+                        <Label htmlFor="city">City</Label>
+                        <input id="city" type="text" aria-label="City" />
 
-                    <Label htmlFor="zip-code">Zip Code</Label>
-                    <input id="zip-code" type="number" />
-                </AddressFieldset>
+                        <Selector 
+                            label="State" 
+                            name="state" 
+                            id="state" 
+                            aria-label="State"
+                            options={statesArray} 
+                            onChange={(e) => setState(e.target.value)} />
 
-                <InfosFieldset>
+                        <Label htmlFor="zip-code">Zip Code</Label>
+                        <input id="zip-code" type="number" aria-label="Zip Code" />
+                    </AddressFieldset>
 
-                <Selector 
-                label="Department" 
-                name="department" 
-                id="department" 
-                options={departmentOptions} 
-                onChange={(e) => setDepartment(e.target.value)} />
-                </InfosFieldset>
-                <Button type="submit">Save</Button>
+                    <InfosFieldset>
+                        <Selector 
+                            label="Department" 
+                            name="department" 
+                            id="department" 
+                            aria-label="Department"
+                            options={departmentOptions} 
+                            onChange={(e) => setDepartment(e.target.value)} />
+                    </InfosFieldset>
 
-            </FormStyle>
-        </Container>
-        <Modal id="confirmation">Employee Created!</Modal>
-    </>
-);
+                    <Button type="submit" aria-label="Save Employee Data">Save</Button>
+                </FormStyle>
+            </Container>
+            <Modal id="confirmation">Employee Created!</Modal>
+        </>
+    );
 }
 
 export default CreateForm;
