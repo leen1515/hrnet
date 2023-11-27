@@ -1,6 +1,6 @@
 import logo from '../assets/logo.png';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const HeaderParent = styled.div`
     position:fixed;
@@ -38,7 +38,7 @@ const ContainLink = styled.div`
     justify-content:flex-start;
     `;
 
-const LinkStyle = styled(Link)`
+const LinkStyle = styled(NavLink)`
     position:relative;
     font-size: 1em;
     font-weight: 400;
@@ -51,9 +51,15 @@ const LinkStyle = styled(Link)`
     border:none;
     text-decoration:none;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
+    color:black;
     cursor:pointer;
     &:hover{
         background-color: #ffffff;
+        color: black;
+    }
+    &.active {
+        background-color: #9bbe1c;
+        color: black;
     }
 `;
 
@@ -66,8 +72,8 @@ function Header(){
             
         </HeaderStyle>
         <ContainLink>
-        <LinkStyle to = "/employes">View Current Employees</LinkStyle>
-        <LinkStyle to = "/">Create New Employee</LinkStyle>
+        <LinkStyle to = "/employes" tabIndex={0}>View Current Employees</LinkStyle>
+        <LinkStyle to = "/"tabIndex={0}>Create New Employee</LinkStyle>
         </ContainLink>
         </HeaderParent>
     )
