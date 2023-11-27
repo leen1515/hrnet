@@ -23,7 +23,7 @@ const FormStyle = styled.form`
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin-top: -250px;
+    margin-top: 0px;
     
     && input{
         font-size: 1em;

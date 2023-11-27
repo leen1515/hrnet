@@ -2,6 +2,11 @@ import logo from '../assets/logo.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+const HeaderParent = styled.div`
+    position:fixed;
+    z-index: 100;
+    `;
+
 const HeaderStyle = styled.header`
     position:relative;
     display:flex;
@@ -51,17 +56,17 @@ const LinkStyle = styled(Link)`
 
 function Header(){
 
-    return(<>
+    return(<HeaderParent>
         <HeaderStyle>
             
             <img src={logo} alt="logo" />
             
         </HeaderStyle>
         <ContainLink>
-        <LinkStyle to = "/ListEmploye">View Current Employees</LinkStyle>
+        <LinkStyle to = "/employes">View Current Employees</LinkStyle>
         <LinkStyle to = "/">Create New Employee</LinkStyle>
         </ContainLink>
-        </>
+        </HeaderParent>
     )
 }
 

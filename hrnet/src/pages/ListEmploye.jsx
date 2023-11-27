@@ -1,6 +1,12 @@
+import { useSelector } from "react-redux";
+// import styled from "styled-components";
+
 function ListEmploye(){
+
+    const employeeData = useSelector(state => state.form.employeeData);
+
     return(
-        <h1>List Employe</h1>
+        <h1>{JSON.stringify(employeeData)}</h1>
     );
 }
 
