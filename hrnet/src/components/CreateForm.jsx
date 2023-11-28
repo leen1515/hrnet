@@ -3,7 +3,7 @@ import Selector from '../modules/selector/Selector';
 import { departmentsArray } from '../modules/selector/datasArrays/departmentsArray';
 import { statesArray } from '../modules/selector/datasArrays/statesArray';
 import DateSelector from '../modules/DateSelector';
-import Modal from '../modules/Modal';
+import Modal from '../modules/modal/Modal';
 import { Label } from '../styled/global';
 import { useDispatch } from 'react-redux';
 import { submitForm } from '../reduxcode/sliceform';
@@ -92,6 +92,7 @@ function CreateForm() {
     const [dateStart, setDateStart] = useState(new Date());
     const [state, setState] = useState('');
     const [department, setDepartment] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     const handleSubmit = (e) => {
@@ -109,6 +110,7 @@ function CreateForm() {
             department
         );
         dispatch(submitForm(employeeData ));
+        setIsModalOpen(true);
     };
 
     return (
@@ -170,8 +172,9 @@ function CreateForm() {
                     <Button type="submit" aria-label="Save Employee Data">Save</Button>
                 </FormStyle>
             </Container>
-            <Modal id="confirmation">Employee Created!</Modal>
-        </>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <p>Employee Created!</p>
+            </Modal>        </>
     );
 }
 
