@@ -19,13 +19,14 @@ const ModalBox = styled.div`
     width: 100%;
     max-width: 500px;
     height: 100%;
-    max-height: 100px;
+    max-height: 50px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     display: flex;
+    padding: 5px 20px;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
 `;
 
@@ -38,8 +39,8 @@ const CloseButton = styled.button`
     right: 0;
     margin-top: -10px;
     margin-right: -10px;
-    width:40px;
-    height:40px;
+    width:30px;
+    height:30px;
     border-radius: 50%;
     cursor: pointer;
 `;
