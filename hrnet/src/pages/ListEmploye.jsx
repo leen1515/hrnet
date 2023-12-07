@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { CoolTable } from 'react-cool-table';
 
 const ContainerEmployees = styled.div`
     display: flex;
@@ -11,17 +12,14 @@ const ContainerEmployees = styled.div`
     border-radius: 10px;
 `;
 
+
 function EmployeeList() {
   const employees = useSelector(state => state.form.employees);
  console.log(employees);
   return (
     <ContainerEmployees>
-      <h2>Liste des Employés</h2>
-      {employees.map(employee => (
-        <div key={employee.id}>
-          <p>{employee.firstName} {employee.lastName}</p>
-        </div>
-      ))}
+      <h2>Current Employees</h2>
+      <CoolTable data={employees} excludedColumns={["id"]}/>
     </ContainerEmployees>
   );
 }

@@ -1,9 +1,8 @@
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Utilise le localStorage
-import formSliceReducer from '../reduxcode/sliceform'; // Vérifiez le chemin d'accès
-
+import storageSession from 'redux-persist/lib/storage/session'; 
+import formSliceReducer from '../reduxcode/sliceform'; 
 
 import { combineReducers } from '@reduxjs/toolkit';
 
@@ -13,7 +12,7 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storageSession, 
   whitelist: ['form']
 };
 

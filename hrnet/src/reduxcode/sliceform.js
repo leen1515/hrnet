@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { datasMock } from "../datas/datasMock.js";
 
 
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    employees: [{ id: 'id1', firstName: 'John', lastName: 'Doe', dateOfBirth: '1990-01-01', dateStart: '2020-01-01', address: { street: '1 rue de la Paix', city: 'Paris', state: 'France', zipCode: '75000' }, department: 'IT'}] 
+    employees: datasMock, 
   },
   reducers: {
     submitForm: (state, action) => {
