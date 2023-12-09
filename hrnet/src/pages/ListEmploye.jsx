@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { CoolTable } from 'react-cool-table';
+import 'react-cool-table/dist/index.css';
+import 'react-cool-table/dist/index.es.css';
 
 const ContainerEmployees = styled.div`
     display: flex;

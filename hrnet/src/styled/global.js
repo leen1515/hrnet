@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         background-color: #e9fed3;
     }
+    div{
+        margin: 0;
+        padding: 0;
+    }
 `;
 
 export const Label = styled.label`
@@ -16,3 +20,4 @@ margin: 10px 0;
 font-weight: 400;
 display: block; 
 `;
+
