@@ -57,8 +57,8 @@ function Header(){
     return(<HeaderParent>
         <TitleH1>HRnet</TitleH1>
         <ContainLink>
-        <LinkStyle to = "/employes" tabIndex={0}>View Current Employees</LinkStyle>
-        <LinkStyle to = "/"tabIndex={0}>Create New Employee</LinkStyle>
+        <LinkStyle to = "/employes" tabIndex={0}>View Employees</LinkStyle>
+        <LinkStyle to = "/"tabIndex={0}>Create Employee</LinkStyle>
         </ContainLink>
         </HeaderParent>
     )
