@@ -4,13 +4,13 @@ export function createEmployeeData(id, firstName, lastName, dateOfBirth, dateSta
         firstName: firstName.trim(), 
         lastName: lastName.trim(),
         dateOfBirth: dateOfBirth instanceof Date ? dateOfBirth.toISOString() : '',
-        dateStart: dateStart instanceof Date ? dateStart.toISOString() : '',
-        address: {
+        startDate: dateStart instanceof Date ? dateStart.toISOString() : '',
+        adress: {
             street: street.trim(),
             city: city.trim(),
-            state,
-            zipCode
+            state: state,
+            zipCode: zipCode
         },
-        department
+        department: department
     };
 }

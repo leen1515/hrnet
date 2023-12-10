@@ -1,4 +1,3 @@
-import logo from '../assets/logo.png';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -6,29 +5,11 @@ const HeaderParent = styled.div`
     position:fixed;
     z-index: 100;
     top:0;
-    `;
-
-const HeaderStyle = styled.header`
-    position:relative;
-    display:flex;
-    align-items:flex-start;
-    justify-content:flex-start;
-    flex-direction:row;
     width:100%;
-    height:15vh;
-    margin: 0;
-    background : linear-gradient(130deg, #ffffff 40%, #fffff027 50%);
-    z-index:1;
-    && img{
-object-fit: contain;
-width: 30%;
-height:100%;
-z-index: 1;
-}
-`;
-
+    background: linear-gradient(0deg, transparent 0%, #e9fed3 40%);
+    `;
 const ContainLink = styled.div`
-    position:relative;
+    position:absolute;
     display:flex;
     flex-direction: column;
     align-items:flex-start;
@@ -40,12 +21,12 @@ const ContainLink = styled.div`
 
 const LinkStyle = styled(NavLink)`
     position:relative;
-    font-size: 1em;
+    font-size: 0.7em;
     font-weight: 400;
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color:#e9fed3;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
     width:200px;
     text-align: center;
     border:none;
@@ -63,14 +44,18 @@ const LinkStyle = styled(NavLink)`
     }
 `;
 
+const TitleH1 = styled.h1`
+    position:relative;
+    font-size: 2em;
+    font-weight: 700;
+    margin:10px auto;
+    width:fit-content;
+    `;
+
 function Header(){
 
     return(<HeaderParent>
-        <HeaderStyle>
-            
-            <img src={logo} alt="logo" />
-            
-        </HeaderStyle>
+        <TitleH1>HRnet</TitleH1>
         <ContainLink>
         <LinkStyle to = "/employes" tabIndex={0}>View Current Employees</LinkStyle>
         <LinkStyle to = "/"tabIndex={0}>Create New Employee</LinkStyle>

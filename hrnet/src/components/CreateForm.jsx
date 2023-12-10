@@ -18,12 +18,13 @@ const Container = styled.div`
     width:80%;
     height:100vh;
     margin:auto;
-    border-radius: 10px;
+    top:0;
 `;
 const FormStyle = styled.form`
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:flex-start;
     margin-top: 0px;
     
     && input{
@@ -43,6 +44,14 @@ const AddressFieldset = styled.fieldset`
     border-radius: 10px;
     border:none;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
+    && label{
+        align-self: flex-start;
+        width:90%;
+        margin:10px auto;
+    } && input{
+        background-color: white;
+        border:0.5 solid #000000;
+    }
 
 `;
 
@@ -52,21 +61,30 @@ const InfosFieldset = styled.fieldset`
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    background-color: white;
     border-radius: 10px;
+    background-color: white;
     border:none;
     margin: 20px 0; 
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
+    && label{
+        align-self: flex-start;
+        width:90%;
+        margin:10px auto;
+    }
+    && input{
+        background-color: white;
+        border:0.5 solid #000000;
+    }
 
 `;
 
 const Legend = styled.legend`
     font-size: 1em;
     font-weight: 400;
-    margin:auto;
+    margin:0 auto;
     padding: 10px 20px;
-    background-color:#ffffff;
-    border-radius: 10px;
+    border-radius: 5px;
+    background-color:white;
 
 `;
 

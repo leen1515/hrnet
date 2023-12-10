@@ -6,10 +6,9 @@ const StyledSelect = styled.select`
   padding: 2px;
   width: 200px;
   border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 1em;
   margin: 5px 0;
-  outline:black;
+  outline: 1px solid black;
   &&:focus {
     outline: 2px solid black;}
 `;
@@ -33,11 +32,11 @@ function Selector({ label, name, id, options, onChange }) {
     };
 
     return (<>
-          {label && <Label htmlFor={id}>{label}</Label>}
+        {label && <Label htmlFor={id}>{label}</Label>}
         <StyledSelect name={name} id={id} value={value} onChange={handleChange}>
             {options.map(renderOption)}
         </StyledSelect>
-        </>
+    </>
     );
 }
 

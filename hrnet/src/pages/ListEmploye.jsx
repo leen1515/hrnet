@@ -4,15 +4,17 @@ import styled from 'styled-components';
 import { CoolTable } from 'react-cool-table';
 import 'react-cool-table/dist/index.css';
 import 'react-cool-table/dist/index.es.css';
+import { SubTitle } from './Home';
 
 const ContainerEmployees = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 90%;
     margin: auto;
     border-radius: 10px;
 `;
+
 
 
 function EmployeeList() {
@@ -20,7 +22,7 @@ function EmployeeList() {
  console.log(employees);
   return (
     <ContainerEmployees>
-      <h2>Current Employees</h2>
+      <SubTitle>Current Employees</SubTitle>
       <CoolTable data={employees} excludedColumns={["id"]}/>
     </ContainerEmployees>
   );
