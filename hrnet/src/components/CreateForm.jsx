@@ -92,7 +92,7 @@ const Button = styled.button`
     font-size: 1em;
     font-weight: 400;
     padding: 10px 20px;
-    background-color:#e9fed3;
+    background-color:#9bbe1c;
     border-radius: 10px;
     border:none;
     width:100%;

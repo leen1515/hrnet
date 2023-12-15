@@ -54,7 +54,7 @@ function Modal ({ isOpen, children, onClose }){
         <ModalBackdrop>
             <ModalBox>
                 {children}
-                <CloseButton onClick={onClose}><img src= {xMark} width="100%"/></CloseButton>
+                <CloseButton onClick={onClose}><img src= {xMark} width="100%" alt="close"/></CloseButton>
             </ModalBox>
         </ModalBackdrop>
     );

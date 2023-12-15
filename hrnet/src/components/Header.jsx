@@ -21,7 +21,7 @@ const ContainLink = styled.div`
 
 const LinkStyle = styled(NavLink)`
     position:relative;
-    font-size: 0.7em;
+    font-size:1em;
     font-weight: 400;
     margin-top: 10px;
     padding: 5px 10px;

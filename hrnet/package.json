@@ -2,17 +2,17 @@
   "name": "hrnet",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://leen1515.github.io/hrnet",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
-    "react-cool-table": "^0.0.91",
+    "react-cool-table": "^0.1.3",
     "react-datepicker": "^4.23.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.3",
-    "react-router": "^6.18.0",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
@@ -23,13 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -47,7 +43,7 @@
     "@babel/core": "^7.23.3",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
-    "babel-jest": "^29.7.0"
+    "babel-jest": "^29.7.0",
+    "gh-pages": "^6.1.0"
   }
 }
