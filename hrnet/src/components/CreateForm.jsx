@@ -4,195 +4,210 @@ import { departmentsArray } from '../modules/selector/datasArrays/departmentsArr
 import { statesArray } from '../modules/selector/datasArrays/statesArray';
 import DateSelector from '../modules/DateSelector';
 import Modal from '../modules/modal/Modal';
-import { Label } from '../styled/global';
 import { useDispatch } from 'react-redux';
 import { submitForm } from '../reduxcode/sliceform';
 import { useState } from 'react';
 import { createEmployeeData } from '../datas/format';
 
-const Container = styled.div`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    width:80%;
-    height:100vh;
-    margin:auto;
-    top:0;
+const Fieldset = styled.fieldset`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
+    margin-bottom: 20px;
+
+    && label {
+        align-self: flex-start;
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    && input {
+        background-color: white;
+        border: 0.5px solid #000000;
+    }
 `;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    top: 0;
+`;
+
 const FormStyle = styled.form`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     margin-top: 0px;
     
-    && input{
+    && input {
         font-size: 1em;
         font-weight: 400;
     }
-
-`;
-
-const AddressFieldset = styled.fieldset`
-    display:flex;
-    width:100%;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background-color: white;
-    border-radius: 10px;
-    border:none;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
-    && label{
-        align-self: flex-start;
-        width:90%;
-        margin:10px auto;
-    } && input{
-        background-color: white;
-        border:0.5 solid #000000;
-    }
-
-`;
-
-const InfosFieldset = styled.fieldset`
-    display:flex;
-    width:100%;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    border-radius: 10px;
-    background-color: white;
-    border:none;
-    margin: 20px 0; 
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
-    && label{
-        align-self: flex-start;
-        width:90%;
-        margin:10px auto;
-    }
-    && input{
-        background-color: white;
-        border:0.5 solid #000000;
-    }
-
 `;
 
 const Legend = styled.legend`
     font-size: 1em;
     font-weight: 400;
-    margin:0 auto;
+    margin: 0 auto;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color:white;
-
+    background-color: white;
 `;
 
 const Button = styled.button`
     font-size: 1em;
     font-weight: 400;
     padding: 10px 20px;
-    background-color:#9bbe1c;
+    background-color: #9bbe1c;
     border-radius: 10px;
-    border:none;
-    width:100%;
-    margin:0;
+    border: none;
+    width: 100%;
+    margin: 0;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.315);
-    cursor:pointer;
-    &:hover{
+    cursor: pointer;
+
+    &:hover {
         background-color: #ffffff;
     }
 `;
+
 function CreateForm() {
-    const departmentOptions = departmentsArray;
     const dispatch = useDispatch();
-    const [dateOfBirth, setDateOfBirth] = useState(new Date());
-    const [dateStart, setDateStart] = useState(new Date());
-    const [state, setState] = useState('');
-    const [department, setDepartment] = useState('');
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        dateOfBirth: new Date(),
+        dateStart: new Date(),
+        street: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        department: ''
+    });
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const employeeData  = createEmployeeData(
+        const employeeData = createEmployeeData(
             Date.now(),
-            e.target["first-name"].value,
-            e.target["last-name"].value,
-            dateOfBirth,
-            dateStart,
-            e.target["street"].value,
-            e.target["city"].value,
-            state,
-            e.target["zip-code"].value,
-            department
+            formData.firstName,
+            formData.lastName,
+            formData.dateOfBirth,
+            formData.dateStart,
+            formData.street,
+            formData.city,
+            formData.state,
+            formData.zipCode,
+            formData.department
         );
-        dispatch(submitForm(employeeData ));
+        dispatch(submitForm(employeeData));
         setIsModalOpen(true);
     };
 
     return (
         <>
             <Container>
-                <FormStyle action="#" id="create-employee" onSubmit={handleSubmit}>
-                    
-                    <InfosFieldset>
+                <FormStyle onSubmit={handleSubmit}>
+                    <Fieldset>
                         <Legend>Identity</Legend>
-
-                        <Label htmlFor="first-name">First Name</Label>
-                        <input type="text" id="first-name" aria-label="First Name" />
-
-                        <Label htmlFor="last-name">Last Name</Label>
-                        <input type="text" id="last-name" aria-label="Last Name" />
-
+                        <label htmlFor="first-name">First Name</label>
+                        <input 
+                            type="text" 
+                            id="first-name" 
+                            name="firstName" 
+                            onChange={handleChange} 
+                            aria-label="First Name"
+                        />
+                        <label htmlFor="last-name">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="last-name" 
+                            name="lastName" 
+                            onChange={handleChange} 
+                            aria-label="Last Name"
+                        />
                         <DateSelector 
                             title="Date of Birth" 
+                            onChange={(date) => setFormData({...formData, dateOfBirth: date})} 
                             aria-label="Date of Birth"
-                            onChange={(date) => setDateOfBirth(date)} />
-
+                        />
                         <DateSelector 
                             title="Date Start" 
+                            onChange={(date) => setFormData({...formData, dateStart: date})} 
                             aria-label="Date Start"
-                            onChange={(date) => setDateStart(date)} />
-                    </InfosFieldset>
+                        />
+                    </Fieldset>
 
-                    <AddressFieldset>
+                    <Fieldset>
                         <Legend>Address</Legend>
-
-                        <Label htmlFor="street">Street</Label>
-                        <input id="street" type="text" aria-label="Street" />
-
-                        <Label htmlFor="city">City</Label>
-                        <input id="city" type="text" aria-label="City" />
-
+                        <label htmlFor="street">Street</label>
+                        <input 
+                            id="street" 
+                            type="text" 
+                            name="street" 
+                            onChange={handleChange} 
+                            aria-label="Street"
+                        />
+                        <label htmlFor="city">City</label>
+                        <input 
+                            id="city" 
+                            type="text" 
+                            name="city" 
+                            onChange={handleChange} 
+                            aria-label="City"
+                        />
                         <Selector 
                             label="State" 
                             name="state" 
                             id="state" 
-                            aria-label="State"
+                            onChange={handleChange} 
                             options={statesArray} 
-                            onChange={(e) => setState(e.target.value)} />
+                            aria-label="State"
+                        />
+                        <label htmlFor="zip-code">Zip Code</label>
+                        <input 
+                            id="zip-code" 
+                            type="number" 
+                            name="zipCode" 
+                            onChange={handleChange} 
+                            aria-label="Zip Code"
+                        />
+                    </Fieldset>
 
-                        <Label htmlFor="zip-code">Zip Code</Label>
-                        <input id="zip-code" type="number" aria-label="Zip Code" />
-                    </AddressFieldset>
-
-                    <InfosFieldset>
+                    <Fieldset>
                         <Selector 
                             label="Department" 
                             name="department" 
                             id="department" 
+                            onChange={handleChange} 
+                            options={departmentsArray} 
                             aria-label="Department"
-                            options={departmentOptions} 
-                            onChange={(e) => setDepartment(e.target.value)} />
-                    </InfosFieldset>
+                        />
+                    </Fieldset>
 
                     <Button type="submit" aria-label="Save Employee Data">Save</Button>
                 </FormStyle>
             </Container>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                 <p>Employee Created!</p>
-            </Modal>        </>
+            </Modal>
+        </>
     );
 }
 

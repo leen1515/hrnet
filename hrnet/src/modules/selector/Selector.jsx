@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Label } from '../../styled/global';
 
@@ -10,34 +10,29 @@ const StyledSelect = styled.select`
   margin: 5px 0;
   outline: 1px solid black;
   &&:focus {
-    outline: 2px solid black;}
+    outline: 2px solid black;
+  }
 `;
 
-function Selector({ label, name, id, options, onChange }) {
-    const [value, setValue] = useState('');
+const renderOption = (option, index) => {
+    if (typeof option === 'string') {
+        return <option key={index} value={option}>{option}</option>;
+    } else if (typeof option === 'object' && option !== null) {
+        return <option key={index} value={option.abbreviation}>{option.name}</option>;
+    }
+};
 
-    const handleChange = (e) => {
-        setValue(e.target.value);
-        if (onChange) {
-            onChange(e);
-        }
-    };
+const Selector = React.memo(({ label, name, id, options, onChange }) => {
+    const memoizedOptions = useMemo(() => options.map(renderOption), [options]);
 
-    const renderOption = (option, index) => {
-        if (typeof option === 'string') {
-            return <option key={index} value={option}>{option}</option>;
-        } else if (typeof option === 'object' && option !== null) {
-            return <option key={index} value={option.abbreviation}>{option.name}</option>;
-        }
-    };
-
-    return (<>
-        {label && <Label htmlFor={id}>{label}</Label>}
-        <StyledSelect name={name} id={id} value={value} onChange={handleChange}>
-            {options.map(renderOption)}
-        </StyledSelect>
-    </>
+    return (
+        <>
+            {label && <Label htmlFor={id}>{label}</Label>}
+            <StyledSelect name={name} id={id} onChange={onChange}>
+                {memoizedOptions}
+            </StyledSelect>
+        </>
     );
-}
+});
 
 export default Selector;
