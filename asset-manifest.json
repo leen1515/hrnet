@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/hrnet/static/css/main.537aec05.css",
-    "main.js": "/hrnet/static/js/main.d1155e64.js",
+    "main.css": "/hrnet/static/css/main.10ad9ede.css",
+    "main.js": "/hrnet/static/js/main.b9d9a50b.js",
     "static/js/787.92a4d0b6.chunk.js": "/hrnet/static/js/787.92a4d0b6.chunk.js",
     "index.html": "/hrnet/index.html",
     "static/media/xmark.svg": "/hrnet/static/media/xmark.48ada143b39742663cde6afd8d8b0b20.svg",
-    "main.537aec05.css.map": "/hrnet/static/css/main.537aec05.css.map",
-    "main.d1155e64.js.map": "/hrnet/static/js/main.d1155e64.js.map",
+    "main.10ad9ede.css.map": "/hrnet/static/css/main.10ad9ede.css.map",
+    "main.b9d9a50b.js.map": "/hrnet/static/js/main.b9d9a50b.js.map",
     "787.92a4d0b6.chunk.js.map": "/hrnet/static/js/787.92a4d0b6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.537aec05.css",
-    "static/js/main.d1155e64.js"
+    "static/css/main.10ad9ede.css",
+    "static/js/main.b9d9a50b.js"
   ]
 }
