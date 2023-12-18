@@ -55,6 +55,9 @@ const FormStyle = styled.form`
         font-size: 1em;
         font-weight: 400;
     }
+    && p {
+        color: red;
+    }
 `;
 
 const Legend = styled.legend`
@@ -83,8 +86,10 @@ const Button = styled.button`
     }
 `;
 
+
 function CreateForm() {
     const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -96,14 +101,51 @@ function CreateForm() {
         zipCode: '',
         department: ''
     });
+
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formError, setFormError] = useState('');
+
+
+
+    const validate = (name, value) => {
+        if (name === 'dateOfBirth' || name === 'dateStart' || name === 'state' || name === 'department') {
+            return '';
+        }
+
+        if (typeof value === 'string') {
+            if (!value.trim()) {
+                return 'Fields cannot be empty';
+            }
+            if (/[^a-zA-Z0-9 -]/.test(value)) {
+                return 'No special characters allowed';
+            }
+        }
+        return '';
+    };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormError('');
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let isValid = true;
+
+        for (const key of Object.keys(formData)) {
+            const error = validate(key, formData[key]);
+            if (error) {
+                setFormError(error);
+                isValid = false;
+                break;
+            }
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+
         const employeeData = createEmployeeData(
             Date.now(),
             formData.firstName,
@@ -116,6 +158,7 @@ function CreateForm() {
             formData.zipCode,
             formData.department
         );
+
         dispatch(submitForm(employeeData));
         setIsModalOpen(true);
     };
@@ -127,29 +170,29 @@ function CreateForm() {
                     <Fieldset>
                         <Legend>Identity</Legend>
                         <label htmlFor="first-name">First Name</label>
-                        <input 
-                            type="text" 
-                            id="first-name" 
-                            name="firstName" 
-                            onChange={handleChange} 
+                        <input
+                            type="text"
+                            id="first-name"
+                            name="firstName"
+                            onChange={handleChange}
                             aria-label="First Name"
                         />
                         <label htmlFor="last-name">Last Name</label>
-                        <input 
-                            type="text" 
-                            id="last-name" 
-                            name="lastName" 
-                            onChange={handleChange} 
+                        <input
+                            type="text"
+                            id="last-name"
+                            name="lastName"
+                            onChange={handleChange}
                             aria-label="Last Name"
                         />
-                        <DateSelector 
-                            title="Date of Birth" 
-                            onChange={(date) => setFormData({...formData, dateOfBirth: date})} 
+                        <DateSelector
+                            title="Date of Birth"
+                            onChange={(date) => setFormData({ ...formData, dateOfBirth: date })}
                             aria-label="Date of Birth"
                         />
-                        <DateSelector 
-                            title="Date Start" 
-                            onChange={(date) => setFormData({...formData, dateStart: date})} 
+                        <DateSelector
+                            title="Date Start"
+                            onChange={(date) => setFormData({ ...formData, dateStart: date })}
                             aria-label="Date Start"
                         />
                     </Fieldset>
@@ -157,50 +200,50 @@ function CreateForm() {
                     <Fieldset>
                         <Legend>Address</Legend>
                         <label htmlFor="street">Street</label>
-                        <input 
-                            id="street" 
-                            type="text" 
-                            name="street" 
-                            onChange={handleChange} 
+                        <input
+                            id="street"
+                            type="text"
+                            name="street"
+                            onChange={handleChange}
                             aria-label="Street"
                         />
                         <label htmlFor="city">City</label>
-                        <input 
-                            id="city" 
-                            type="text" 
-                            name="city" 
-                            onChange={handleChange} 
+                        <input
+                            id="city"
+                            type="text"
+                            name="city"
+                            onChange={handleChange}
                             aria-label="City"
                         />
-                        <Selector 
-                            label="State" 
-                            name="state" 
-                            id="state" 
-                            onChange={handleChange} 
-                            options={statesArray} 
+                        <Selector
+                            label="State"
+                            name="state"
+                            id="state"
+                            onChange={handleChange}
+                            options={statesArray}
                             aria-label="State"
                         />
                         <label htmlFor="zip-code">Zip Code</label>
-                        <input 
-                            id="zip-code" 
-                            type="number" 
-                            name="zipCode" 
-                            onChange={handleChange} 
+                        <input
+                            id="zip-code"
+                            type="number"
+                            name="zipCode"
+                            onChange={handleChange}
                             aria-label="Zip Code"
                         />
                     </Fieldset>
 
                     <Fieldset>
-                        <Selector 
-                            label="Department" 
-                            name="department" 
-                            id="department" 
-                            onChange={handleChange} 
-                            options={departmentsArray} 
+                        <Selector
+                            label="Department"
+                            name="department"
+                            id="department"
+                            onChange={handleChange}
+                            options={departmentsArray}
                             aria-label="Department"
                         />
                     </Fieldset>
-
+                    {formError && <p>{formError}</p>}
                     <Button type="submit" aria-label="Save Employee Data">Save</Button>
                 </FormStyle>
             </Container>
