@@ -4,7 +4,7 @@
 Le projet consiste à convertir une plateforme de gestion d'employés codée avec JQuery en React.
 
 Demo:
-    https://github.com/leen1515/hrnet
+   https://leen1515.github.io/hrnet/
 
 
 Destinées à une utilisation interne par une grande entreprise, la nouvelle version du site en React améliore la performance en ligne et facilite la maintenance et les ajouts de nouvelles fonctionnalitées du site sur le long terme.
